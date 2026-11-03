@@ -214,3 +214,19 @@
     animation: none;
   }
 }
+
+/* Terminación curva del Hero */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 32px;
+  clip-path: ellipse(85% 100% at 50% 0%);
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-bottom: 20px;
+    clip-path: ellipse(110% 100% at 50% 0%);
+  }
+}
