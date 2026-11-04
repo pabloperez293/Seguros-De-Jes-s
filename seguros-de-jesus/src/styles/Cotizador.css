@@ -31,7 +31,7 @@
       rgba(233, 231, 225, 0.48) 55%,
       rgba(233, 231, 225, 0.72) 100%
     ),
-    url("/images/cotizador-oficina.jpg");
+    url("/images/cotizador-oficina.webp");
 
   background-position: center;
   background-size: cover;
@@ -502,7 +502,7 @@
         rgba(216, 217, 203, 0.78) 30%,
         rgba(248, 247, 244, 0.08) 80%
       ),
-      url("/images/cotizador-oficina.jpg");
+      url("/images/cotizador-oficina.webp");
   }
 }
 
