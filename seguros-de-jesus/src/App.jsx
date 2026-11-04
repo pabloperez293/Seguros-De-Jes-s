@@ -5,7 +5,9 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Seguros from "./components/Seguros";
 import Cotizador from "./components/Cotizador";
+
 import Aseguradoras from "./components/Aseguradoras";
+import Recomendaciones from "./components/Recomendaciones";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -30,6 +32,8 @@ export default function App() {
         />
 
         <Aseguradoras />
+        <Recomendaciones />
+
       </main>
 
       <Footer />
