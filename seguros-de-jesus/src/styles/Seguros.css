@@ -1,154 +1,186 @@
-.seguros {
+
+.coberturas {
   width: 100%;
-  padding: 43px 0 55px;
-  background: var(--color-cream);
-  scroll-margin-top: 90px;
-}
-
-.seguros__container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 5.5%;
-
+  padding: 75px max(5%, calc((100vw - 1380px) / 2));
+  background: #f8f7f4;
   display: grid;
-  grid-template-columns: 270px minmax(0, 1fr);
+  grid-template-columns: 260px minmax(0, 1fr);
   align-items: center;
-  gap: 25px;
+  gap: 35px;
 }
 
-.seguros__intro {
+.coberturas__intro {
+  align-self: center;
+}
+
+.coberturas__eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.6px;
+  color: #686e57;
+}
+
+.coberturas__intro h2 {
+  margin: 0 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(31px, 3vw, 44px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -1.3px;
+  color: #24251f;
+}
+
+.coberturas__intro p {
+  max-width: 245px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #56584f;
+}
+
+.coberturas__linea {
+  width: 58px;
+  height: 3px;
+  margin-top: 23px;
+  border-radius: 3px;
+  background: #838d6c;
+}
+
+.coberturas__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+}
+
+.cobertura-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 225px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 15px;
+  background: #d8d9cb;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(40, 45, 35, 0.09);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.cobertura-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.cobertura-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(25, 30, 20, 0.02) 20%,
+    rgba(25, 30, 20, 0.15) 48%,
+    rgba(25, 30, 20, 0.8) 100%
+  );
+}
+
+.cobertura-card__contenido {
+  position: absolute;
+  z-index: 1;
+  inset: auto 12px 13px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.seguros__eyebrow {
-  color: var(--color-olive);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  margin-bottom: 12px;
-}
-
-.seguros__intro h2 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(27px, 2.5vw, 36px);
-  line-height: 1.05;
-  letter-spacing: -0.7px;
-  color: var(--color-black);
-}
-
-.seguros__intro p {
-  margin: 14px 0;
-  max-width: 260px;
-  font-size: 15px;
-  line-height: 1.4;
-  color: var(--color-black);
-}
-
-.seguros__line {
-  width: 47px;
-  height: 3px;
-  border-radius: 4px;
-  background: var(--color-olive);
-}
-
-.seguros__grid {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 9px;
-}
-
-.seguros__card {
-  min-height: 137px;
-  padding: 16px 7px 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 10px;
-
-  text-decoration: none;
-  color: var(--color-olive);
-
-  background: #fbf7f1;
-  border: 1px solid #e9e2d9;
-  border-radius: 14px;
-
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.08);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
+  color: white;
 }
 
-.seguros__card h3 {
-  margin: 0;
-  color: var(--color-black);
-  font-size: 15px;
+.cobertura-card__inferior {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  font-size: 13px;
   font-weight: 600;
 }
 
-.seguros__arrow {
-  transition: transform 0.3s ease;
+.cobertura-card__flecha {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
-.seguros__card:hover {
+.cobertura-card:hover {
   transform: translateY(-6px);
-  border-color: var(--color-olive);
-  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 17px 30px rgba(40, 45, 35, 0.16);
 }
 
-.seguros__card:hover .seguros__arrow {
-  transform: translateX(4px);
+.cobertura-card:hover img {
+  transform: scale(1.08);
+}
+
+.cobertura-card:hover .cobertura-card__flecha {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
 }
 
 @media (max-width: 1100px) {
-  .seguros__container {
+  .coberturas {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 28px;
   }
 
-  .seguros__grid {
+  .coberturas__intro p {
+    max-width: 500px;
+  }
+
+  .coberturas__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
+  }
+
+  .cobertura-card {
+    height: 250px;
   }
 }
 
 @media (max-width: 600px) {
-  .seguros {
-    padding: 40px 0;
+  .coberturas {
+    padding: 65px 20px;
   }
 
-  .seguros__container {
-    padding: 0 6%;
+  .coberturas__intro h2 {
+    font-size: 35px;
   }
 
-  .seguros__grid {
+  .coberturas__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
 
-  .seguros__card {
-    min-height: 135px;
+  .cobertura-card {
+    height: 225px;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .seguros__card,
-  .seguros__arrow {
-    transition: none;
-  }
-}
-.seguros {
-  padding: 65px 0 75px;
-  background: var(--color-cream);
-}
-
-@media (max-width: 600px) {
-  .seguros {
-    padding: 45px 0 55px;
+  .cobertura-card__contenido {
+    inset: auto 12px 13px;
   }
 }

@@ -1,143 +1,80 @@
 import { useEffect, useState } from "react";
-import { Menu, X, ShieldCheck, MessageCircle } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { Menu, X, MessageCircle } from "lucide-react";
 import "../styles/Navbar.css";
 
-const WHATSAPP_NUMBER = "5491157662077";
+const WHATSAPP = "5491157662077";
 
-const navigation = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Seguros", href: "#seguros" },
-  { label: "Nosotros", href: "#sobre-mi" },
+const enlaces = [
+  { texto: "Inicio", href: "#inicio" },
+  { texto: "Seguros", href: "#seguros" },
+  { texto: "Empresas", href: "#empresas" },
+  { texto: "Sobre mí", href: "#nosotros" },
+  { texto: "Contacto", href: "#contacto" },
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [abierto, setAbierto] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [logoError, setLogoError] = useState(false);
-
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    "¡Hola! Quisiera consultar por un seguro.",
-  )}`;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
+    const revisarScroll = () => {
+      setScrolled(window.scrollY > 20);
     };
 
-    handleScroll();
+    revisarScroll();
+    window.addEventListener("scroll", revisarScroll, { passive: true });
 
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", revisarScroll);
   }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-      }
-    };
-
-    window.addEventListener("keydown", handleEscape);
-
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
-
-  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
       <div className="navbar__container">
         <a
+          className="navbar__logo"
           href="#inicio"
-          className="navbar__brand"
-          onClick={closeMenu}
-          aria-label="Seguros de Jesús - Inicio"
+          onClick={() => setAbierto(false)}
         >
-          {!logoError ? (
-            <img
-              src="/images/logoJesus.jpg"
-              alt="Seguros de Jesús"
-              className="navbar__logo"
-              onError={() => setLogoError(true)}
-            />
-          ) : (
-            <span className="navbar__fallback">
-              <ShieldCheck size={49} strokeWidth={1.5} />
-              <span>
-                Seguros
-                <br />
-                de Jesús
-              </span>
-            </span>
-          )}
+          <img src="/images/logoJesus.jpg" alt="Seguros de Jesús" />
         </a>
 
-        <nav className="navbar__links" aria-label="Navegación principal">
-          {navigation.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
+        <nav
+          id="navegacion-principal"
+          className={`navbar__links ${abierto ? "navbar__links--open" : ""}`}
+          aria-label="Navegación principal"
+        >
+          {enlaces.map((enlace) => (
+            <a
+              key={enlace.href}
+              href={enlace.href}
+              onClick={() => setAbierto(false)}
+            >
+              {enlace.texto}
             </a>
           ))}
         </nav>
 
         <a
-          href={whatsappUrl}
           className="navbar__whatsapp"
+          href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, quisiera consultar por un seguro.")}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaWhatsapp size={21} />
-          <span>Cotizá por WhatsApp</span>
+          <MessageCircle size={19} />
+          <span>Consultá por WhatsApp</span>
         </a>
 
         <button
           className="navbar__toggle"
           type="button"
-          aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
-          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label={abierto ? "Cerrar menú" : "Abrir menú"}
+          aria-controls="navegacion-principal"
+          aria-expanded={abierto}
+          onClick={() => setAbierto((valor) => !valor)}
         >
-          {menuOpen ? <X size={27} /> : <Menu size={27} />}
+          {abierto ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-
-      <nav
-        id="mobile-navigation"
-        className={`navbar__mobile ${menuOpen ? "is-open" : ""}`}
-        aria-label="Navegación móvil"
-        aria-hidden={!menuOpen}
-        inert={!menuOpen}
-      >
-        {navigation.map((item) => (
-          <a key={item.href} href={item.href} onClick={closeMenu}>
-            {item.label}
-          </a>
-        ))}
-
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="navbar__mobile-whatsapp"
-          onClick={closeMenu}
-        >
-          <FaWhatsapp size={22} />
-          Cotizá por WhatsApp
-        </a>
-      </nav>
     </header>
   );
 }

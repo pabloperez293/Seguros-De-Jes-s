@@ -1,185 +1,214 @@
 
 import { useState } from "react";
-import { FaWhatsapp } from "react-icons/fa";
+import {
+  CarFront,
+  Bike,
+  House,
+  HeartPulse,
+  Store,
+  Building2,
+  Send,
+} from "lucide-react";
 
+import { camposCotizador } from "../data/camposCotizador";
 import "../styles/Cotizador.css";
 
 const WHATSAPP = "5491157662077";
 
-const TIPOS_SEGURO = [
-  "Auto",
-  "Moto",
-  "Hogar",
-  "Vida",
-  "Comercio",
-  "Empresa",
+const tipos = [
+  { nombre: "Auto", Icono: CarFront },
+  { nombre: "Moto", Icono: Bike },
+  { nombre: "Hogar", Icono: House },
+  { nombre: "Vida y Salud", Icono: HeartPulse },
+  { nombre: "Comercio", Icono: Store },
+  { nombre: "Empresa", Icono: Building2 },
 ];
+
+function Campo({ campo, valor, onChange }) {
+  const id = `cotizador-${campo.name}`;
+
+  const propsComunes = {
+    id,
+    value: valor || "",
+    required: Boolean(campo.required),
+    onChange: (e) => onChange(campo.name, e.target.value),
+  };
+
+  return (
+    <div className={`cotizador__campo ${campo.type === "textarea" ? "cotizador__campo--full" : ""}`}>
+      <label htmlFor={id}>
+        {campo.label}
+        {campo.required && <span> *</span>}
+      </label>
+
+      {campo.type === "select" ? (
+        <select {...propsComunes}>
+          <option value="">Seleccionar</option>
+          {campo.options.map((opcion) => (
+            <option key={opcion} value={opcion}>
+              {opcion}
+            </option>
+          ))}
+        </select>
+      ) : campo.type === "textarea" ? (
+        <textarea
+          {...propsComunes}
+          placeholder={campo.placeholder || "Contanos un poco más"}
+          rows={3}
+        />
+      ) : (
+        <input
+          {...propsComunes}
+          type={campo.type || "text"}
+          placeholder={campo.placeholder || ""}
+          min={campo.min}
+          max={campo.max}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function Cotizador({
   seguroSeleccionado = "Auto",
+  onCambiarSeguro,
 }) {
-  const [form, setForm] = useState({
-    nombre: "",
-    telefono: "",
-    detalles: "",
-  });
+  const [formularios, setFormularios] = useState({});
+  const [nombre, setNombre] = useState("");
+  const [telefono, setTelefono] = useState("");
 
-  const [seguroManual, setSeguroManual] = useState(null);
+  const campos = camposCotizador[seguroSeleccionado] || camposCotizador.Auto;
+  const valores = formularios[seguroSeleccionado] || {};
 
-  // El seguro elegido desde las tarjetas tiene prioridad
-  // cada vez que cambia la selección externa.
-  const seguroActual = seguroManual ?? seguroSeleccionado;
-
-  const actualizar = (event) => {
-    const { name, value } = event.target;
-
-    if (name === "seguro") {
-      setSeguroManual(value);
-      return;
-    }
-
-    setForm((prev) => ({
+  const cambiarCampo = (campo, valor) => {
+    setFormularios((prev) => ({
       ...prev,
-      [name]: value,
+      [seguroSeleccionado]: {
+        ...(prev[seguroSeleccionado] || {}),
+        [campo]: valor,
+      },
     }));
   };
 
-  const enviarCotizacion = (event) => {
-    event.preventDefault();
+  const enviar = (e) => {
+    e.preventDefault();
 
-    const nombre = form.nombre.trim();
-    const telefono = form.telefono.trim();
-
-    if (!nombre || !telefono) return;
+    const detalles = campos
+      .filter((campo) => String(valores[campo.name] ?? "").trim())
+      .map((campo) => `${campo.label}: ${valores[campo.name]}`)
+      .join("\n");
 
     const mensaje = [
-      "¡Hola! Quiero solicitar una cotización.",
+      "Hola, quisiera solicitar una cotización de seguro.",
       "",
-      `Seguro: ${seguroActual}`,
-      `Nombre: ${nombre}`,
-      `Teléfono: ${telefono}`,
-      `Detalles: ${form.detalles.trim() || "Sin observaciones"}`,
+      `Tipo de seguro: ${seguroSeleccionado}`,
+      "",
+      detalles,
+      "",
+      "Datos de contacto:",
+      `Nombre: ${nombre.trim()}`,
+      `Teléfono: ${telefono.trim()}`,
     ].join("\n");
 
-    const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-      mensaje
-    )}`;
+    const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
 
-    window.open(url, "_blank", "noopener,noreferrer");
+    const ventana = window.open(url, "_blank", "noopener,noreferrer");
+
+    if (!ventana) {
+      window.location.href = url;
+    }
   };
 
   return (
     <section className="cotizador" id="cotiza">
-      <div className="cotizador__container">
-        <div className="cotizador__intro">
-          <span className="cotizador__eyebrow">
-            COTIZACIÓN PERSONALIZADA
-          </span>
+      <div className="cotizador__presentacion">
+        <span className="cotizador__eyebrow">
+          ASESORAMIENTO PERSONALIZADO
+        </span>
 
-          <h2>
-            Encontrá el seguro
-            <br />
-            ideal para vos.
-          </h2>
+        <h2>Cotizá tu seguro</h2>
 
-          <p>
-            Contanos qué necesitás y te ayudamos
-            a elegir una cobertura adecuada.
-          </p>
+        <div className="cotizador__linea" />
 
-          <div className="cotizador__accent" />
+        <p>
+          Completá los datos y te ayudamos a encontrar
+          la mejor cobertura para vos.
+        </p>
+      </div>
+
+      <form className="cotizador__formulario" onSubmit={enviar}>
+        <h3>¿Qué querés asegurar?</h3>
+
+        <div className="cotizador__tipos">
+          {tipos.map(({ nombre: tipo, Icono }) => (
+            <button
+              key={tipo}
+              type="button"
+              className={`cotizador__tipo ${seguroSeleccionado === tipo ? "activo" : ""}`}
+              aria-pressed={seguroSeleccionado === tipo}
+              onClick={() => onCambiarSeguro(tipo)}
+            >
+              <Icono size={19} strokeWidth={1.7} />
+              {tipo}
+            </button>
+          ))}
         </div>
 
-        <form
-          className="cotizador__form"
-          onSubmit={enviarCotizacion}
-        >
-          <div className="cotizador__field">
-            <label htmlFor="cotizador-seguro">
-              Tipo de seguro
-            </label>
+        <div className="cotizador__campos">
+          {campos.map((campo) => (
+            <Campo
+              key={`${seguroSeleccionado}-${campo.name}`}
+              campo={campo}
+              valor={valores[campo.name]}
+              onChange={cambiarCampo}
+            />
+          ))}
+        </div>
 
-            <select
-              id="cotizador-seguro"
-              name="seguro"
-              value={seguroActual}
-              onChange={actualizar}
+        <h3 className="cotizador__subtitulo">
+          Tus datos de contacto
+        </h3>
+
+        <div className="cotizador__campos">
+          <div className="cotizador__campo">
+            <label htmlFor="cotizador-nombre">Nombre *</label>
+            <input
+              id="cotizador-nombre"
+              type="text"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              placeholder="Tu nombre"
+              autoComplete="name"
               required
-            >
-              {TIPOS_SEGURO.map((seguro) => (
-                <option key={seguro} value={seguro}>
-                  {seguro}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="cotizador__row">
-            <div className="cotizador__field">
-              <label htmlFor="cotizador-nombre">
-                Nombre completo
-              </label>
-
-              <input
-                id="cotizador-nombre"
-                type="text"
-                name="nombre"
-                placeholder="Tu nombre"
-                value={form.nombre}
-                onChange={actualizar}
-                autoComplete="name"
-                required
-              />
-            </div>
-
-            <div className="cotizador__field">
-              <label htmlFor="cotizador-telefono">
-                Teléfono
-              </label>
-
-              <input
-                id="cotizador-telefono"
-                type="tel"
-                name="telefono"
-                placeholder="11 1234-5678"
-                value={form.telefono}
-                onChange={actualizar}
-                autoComplete="tel"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="cotizador__field">
-            <label htmlFor="cotizador-detalles">
-              ¿Qué necesitás asegurar?
-              <span> (opcional)</span>
-            </label>
-
-            <textarea
-              id="cotizador-detalles"
-              name="detalles"
-              rows="3"
-              placeholder="Contanos brevemente..."
-              value={form.detalles}
-              onChange={actualizar}
             />
           </div>
 
-          <button
-            className="cotizador__submit"
-            type="submit"
-          >
-            <FaWhatsapp size={22} />
-            Solicitar cotización
-          </button>
+          <div className="cotizador__campo">
+            <label htmlFor="cotizador-telefono">
+              Teléfono / WhatsApp *
+            </label>
+            <input
+              id="cotizador-telefono"
+              type="tel"
+              value={telefono}
+              onChange={(e) => setTelefono(e.target.value)}
+              placeholder="Ej. 11 1234-5678"
+              autoComplete="tel"
+              required
+            />
+          </div>
+        </div>
 
-          <p className="cotizador__note">
-            Te dirigiremos a WhatsApp con tu consulta
-            preparada para enviar.
-          </p>
-        </form>
-      </div>
+        <button className="cotizador__enviar" type="submit">
+          <Send size={19} />
+          Preparar solicitud de cotización
+        </button>
+
+        <p className="cotizador__aviso">
+          Al continuar, se abrirá WhatsApp con tu solicitud preparada.
+          La cotización final depende de la aseguradora.
+        </p>
+      </form>
     </section>
   );
 }

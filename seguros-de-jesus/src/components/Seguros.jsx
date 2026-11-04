@@ -1,119 +1,89 @@
-
 import {
   CarFront,
   Bike,
   House,
-  HeartHandshake,
-  BriefcaseBusiness,
+  HeartPulse,
+  Store,
   Building2,
-  ChevronRight,
+  ArrowUpRight,
 } from "lucide-react";
 
 import "../styles/Seguros.css";
 
-const seguros = [
+const coberturas = [
+  { nombre: "Auto", imagen: "/images/coberturas/auto.jpg", Icono: CarFront },
+  { nombre: "Moto", imagen: "/images/coberturas/moto.jpg", Icono: Bike },
+  { nombre: "Hogar", imagen: "/images/coberturas/hogar.jpg", Icono: House },
   {
-    id: "auto",
-    title: "Auto",
-    icon: CarFront,
+    nombre: "Vida y Salud",
+    imagen: "/images/coberturas/vida.jpg",
+    Icono: HeartPulse,
   },
   {
-    id: "moto",
-    title: "Moto",
-    icon: Bike,
+    nombre: "Comercio",
+    imagen: "/images/coberturas/comercio.jpg",
+    Icono: Store,
   },
   {
-    id: "hogar",
-    title: "Hogar",
-    icon: House,
-  },
-  {
-    id: "vida",
-    title: "Vida",
-    icon: HeartHandshake,
-  },
-  {
-    id: "comercio",
-    title: "Comercio",
-    icon: BriefcaseBusiness,
-  },
-  {
-    id: "empresa",
-    title: "Empresa",
-    icon: Building2,
+    nombre: "Empresa",
+    imagen: "/images/coberturas/empresa.jpg",
+    Icono: Building2,
   },
 ];
 
 export default function Seguros({ onSeleccionarSeguro }) {
-  const seleccionarSeguro = (tipoSeguro) => {
-    if (typeof onSeleccionarSeguro === "function") {
-      onSeleccionarSeguro(tipoSeguro);
-    }
+  const seleccionar = (nombre) => {
+    onSeleccionarSeguro(nombre);
+
+    document.getElementById("cotiza")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   return (
-    <section
-      className="seguros"
-      id="seguros"
-      aria-labelledby="seguros-title"
-    >
-      <div className="seguros__container">
-        {/* Presentación de la sección */}
-        <div className="seguros__intro">
-          <span className="seguros__eyebrow">
-            NUESTROS SEGUROS
-          </span>
+    <section className="coberturas" id="seguros">
+      <div className="coberturas__intro">
+        <span className="coberturas__eyebrow">NUESTRAS COBERTURAS</span>
 
-          <h2 id="seguros-title">
-            Elegí la cobertura
-            <br />
-            que necesitás
-          </h2>
+        <h2>
+          Elegí la protección
+          <br />
+          que necesitás
+        </h2>
 
-          <p>
-            Contamos con distintas opciones
-            para vos, tu familia y tu negocio.
-          </p>
+        <p>
+          Soluciones para tu auto, tu hogar, tu familia, tu comercio o tu
+          empresa.
+        </p>
 
-          <span
-            className="seguros__line"
-            aria-hidden="true"
-          />
-        </div>
+        <div className="coberturas__linea" />
+      </div>
 
-        {/* Tarjetas de seguros */}
-        <div className="seguros__grid">
-          {seguros.map((seguro) => {
-            const Icon = seguro.icon;
+      <div className="coberturas__grid">
+        {coberturas.map(({ nombre, imagen, Icono }) => (
+          <button
+            className="cobertura-card"
+            key={nombre}
+            type="button"
+            onClick={() => seleccionar(nombre)}
+            aria-label={`Cotizar seguro de ${nombre}`}
+          >
+            <img src={imagen} alt="" loading="lazy" />
+            <span className="cobertura-card__overlay" />
 
-            return (
-              <a
-                key={seguro.id}
-                href="#cotiza"
-                className="seguros__card"
-                aria-label={`Cotizar seguro de ${seguro.title}`}
-                onClick={() =>
-                  seleccionarSeguro(seguro.title)
-                }
-              >
-                <Icon
-                  size={43}
-                  strokeWidth={1.5}
-                  aria-hidden="true"
-                />
+            <span className="cobertura-card__contenido">
+              <Icono size={27} strokeWidth={1.6} />
 
-                <h3>{seguro.title}</h3>
-
-                <ChevronRight
-                  className="seguros__arrow"
-                  size={18}
-                  strokeWidth={2}
-                  aria-hidden="true"
-                />
-              </a>
-            );
-          })}
-        </div>
+              <span className="cobertura-card__inferior">
+                <span>{nombre}</span>
+                <span className="cobertura-card__flecha">
+                  <ArrowUpRight size={17} />
+                </span>
+              </span>
+            </span>
+          </button>
+        ))}
       </div>
     </section>
   );

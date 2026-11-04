@@ -1,0 +1,132 @@
+
+.intro-cine {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #686e57;
+  color: #f8f7f4;
+  opacity: 1;
+  transition: opacity 0.9s ease;
+}
+
+.intro-cine--exit {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-cine__scene {
+  position: absolute;
+  inset: 0;
+}
+
+.intro-cine__scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.intro-cine__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(15, 20, 16, 0.24),
+      transparent 35%,
+      transparent 65%,
+      rgba(15, 20, 16, 0.45)
+    );
+}
+
+.intro-cine__brand {
+  position: absolute;
+  top: 38px;
+  left: 5%;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.intro-cine__caption {
+  position: absolute;
+  bottom: 48px;
+  left: 5%;
+  font-family: Georgia, serif;
+  font-size: clamp(19px, 2.5vw, 31px);
+}
+
+.intro-cine__progress {
+  margin-top: 18px;
+  width: 180px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+.intro-cine__progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #f8f7f4;
+  transform-origin: left;
+  animation: intro-progress 6.2s linear forwards;
+}
+
+@keyframes intro-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.intro-cine__skip {
+  position: absolute;
+  right: 5%;
+  bottom: 48px;
+  padding: 11px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 30px;
+  background: rgba(20, 25, 20, 0.2);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.intro-cine__skip:hover {
+  background: rgba(20, 25, 20, 0.5);
+}
+
+@media (max-width: 600px) {
+  .intro-cine__brand {
+    top: 25px;
+    font-size: 11px;
+  }
+
+  .intro-cine__caption {
+    bottom: 105px;
+  }
+
+  .intro-cine__skip {
+    bottom: 30px;
+    left: 5%;
+    right: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-cine {
+    transition: none;
+  }
+
+  .intro-cine__progress span {
+    animation: none;
+  }
+}
