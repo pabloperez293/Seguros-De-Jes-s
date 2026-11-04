@@ -1,0 +1,414 @@
+
+/* =========================================
+   FOOTER - SEGUROS DE JESÚS
+========================================= */
+
+.sj-footer {
+  position: relative;
+  background: #424b3b;
+  color: #f8f7f0;
+  padding: 100px 6% 25px;
+  overflow: hidden;
+}
+
+.sj-footer * {
+  box-sizing: border-box;
+}
+
+.sj-footer__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* =========================================
+   ENCABEZADO PRINCIPAL
+========================================= */
+
+.sj-footer__hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  padding-bottom: 85px;
+}
+
+.sj-footer__heroText {
+  max-width: 750px;
+}
+
+.sj-footer__eyebrow {
+  display: block;
+  margin-bottom: 26px;
+  color: #c7d0bd;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+}
+
+.sj-footer__hero h2 {
+  margin: 0;
+  color: #f8f7f0;
+  font-family: Georgia, serif;
+  font-size: clamp(44px, 6vw, 88px);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -2.5px;
+}
+
+.sj-footer__hero h2 em {
+  color: #c7d0bd;
+  font-weight: 400;
+}
+
+.sj-footer__heroText > p {
+  max-width: 450px;
+  margin: 28px 0 0;
+  color: #c7d0bd;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* LOGO */
+
+.sj-footer__logoWrap {
+  flex-shrink: 0;
+  width: 210px;
+  height: 210px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .05);
+  box-shadow: 0 0 0 18px rgba(255, 255, 255, .025);
+}
+
+.sj-footer__logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* =========================================
+   LLAMADO A LA ACCIÓN
+========================================= */
+
+.sj-footer__contacto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 42px 0;
+  border-top: 1px solid rgba(255, 255, 255, .16);
+  border-bottom: 1px solid rgba(255, 255, 255, .16);
+}
+
+.sj-footer__miniLabel {
+  color: #b9c6ad;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.sj-footer__contacto h3 {
+  margin: 13px 0 8px;
+  color: #f8f7f0;
+  font-family: Georgia, serif;
+  font-size: clamp(24px, 3vw, 37px);
+  font-weight: 400;
+  letter-spacing: -.8px;
+}
+
+.sj-footer__contacto p {
+  margin: 0;
+  color: #c7d0bd;
+  font-size: 14px;
+}
+
+/* BOTÓN WHATSAPP PRINCIPAL */
+
+.sj-footer__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 18px 25px;
+  border-radius: 100px;
+  background: #d8d9cb;
+  color: #34402f;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+.sj-footer__whatsapp:hover {
+  transform: translateY(-4px);
+  background: #f8f7f0;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, .12);
+}
+
+/* =========================================
+   COLUMNAS INFERIORES
+========================================= */
+
+.sj-footer__columns {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 70px;
+  padding: 65px 0;
+}
+
+/* MARCA */
+
+.sj-footer__brand strong {
+  display: block;
+  color: #f8f7f0;
+  font-family: Georgia, serif;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.sj-footer__brand > span {
+  display: block;
+  margin-top: 7px;
+  color: #aebca4;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.sj-footer__brand p {
+  margin-top: 22px;
+  color: #c7d0bd;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   ÍCONOS REDES SOCIALES
+========================================= */
+
+.sj-footer__sociales {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.sj-footer__sociales a {
+  width: 47px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #d8d9cb;
+  color: #424b3b;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition:
+    background .3s ease,
+    color .3s ease,
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.sj-footer__sociales a:hover {
+  background: #f8f7f0;
+  color: #424b3b;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .16);
+}
+
+.sj-footer__sociales a:focus-visible {
+  outline: 2px solid #f8f7f0;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   NAVEGACIÓN Y CONTACTO
+========================================= */
+
+.sj-footer__nav,
+.sj-footer__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.sj-footer__nav h4,
+.sj-footer__info h4 {
+  margin: 0 0 10px;
+  color: #f8f7f0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sj-footer__nav a,
+.sj-footer__info a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #c7d0bd;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+.sj-footer__nav a:hover,
+.sj-footer__info a:hover {
+  color: #fff;
+}
+
+.sj-footer__info p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: #c7d0bd;
+  font-size: 13px;
+}
+
+/* =========================================
+   COPYRIGHT Y CRÉDITOS
+========================================= */
+
+.sj-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, .16);
+  color: #b9c6ad;
+  font-size: 11px;
+}
+
+.sj-footer__bottom a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #b9c6ad;
+  text-decoration: none;
+  transition: color .25s ease;
+}
+
+.sj-footer__bottom a:hover {
+  color: #fff;
+}
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .sj-footer {
+    padding: 75px 5% 25px;
+  }
+
+  .sj-footer__hero {
+    gap: 30px;
+  }
+
+  .sj-footer__logoWrap {
+    width: 155px;
+    height: 155px;
+    padding: 18px;
+  }
+
+  .sj-footer__columns {
+    gap: 35px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+  .sj-footer {
+    padding: 65px 5% 25px;
+  }
+
+  .sj-footer__hero {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 35px;
+    padding-bottom: 55px;
+  }
+
+  .sj-footer__logoWrap {
+    width: 105px;
+    height: 105px;
+    padding: 12px;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, .025);
+  }
+
+  .sj-footer__hero h2 {
+    font-size: clamp(40px, 10vw, 57px);
+    letter-spacing: -1.5px;
+  }
+
+  .sj-footer__heroText > p {
+    font-size: 14px;
+  }
+
+  .sj-footer__contacto {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 27px;
+    padding: 35px 0;
+  }
+
+  .sj-footer__whatsapp {
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    padding: 17px;
+  }
+
+  .sj-footer__columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 20px;
+    padding: 50px 0;
+  }
+
+  .sj-footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  .sj-footer__sociales a {
+    width: 45px;
+    height: 45px;
+  }
+
+  .sj-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 11px;
+  }
+}
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .sj-footer a {
+    transition: none;
+  }
+
+  .sj-footer a:hover {
+    transform: none;
+  }
+}
