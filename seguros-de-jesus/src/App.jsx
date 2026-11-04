@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 import Navbar from "./components/Navbar";
@@ -12,8 +11,7 @@ import Ubicacion from "./components/Ubicacion";
 import Footer from "./components/Footer";
 
 export default function App() {
-  const [seguroSeleccionado, setSeguroSeleccionado] =
-    useState("Auto");
+  const [seguroSeleccionado, setSeguroSeleccionado] = useState("Auto");
 
   return (
     <>
@@ -22,10 +20,7 @@ export default function App() {
       <main>
         <Hero />
 
-
-        <Seguros
-          onSeleccionarSeguro={setSeguroSeleccionado}
-        />
+        <Seguros onSeleccionarSeguro={setSeguroSeleccionado} />
 
         <Cotizador
           seguroSeleccionado={seguroSeleccionado}
@@ -34,9 +29,8 @@ export default function App() {
 
         <Aseguradoras />
         <Recomendaciones />
-
       </main>
-<Ubicacion />
+      <Ubicacion />
 
       <Footer />
     </>

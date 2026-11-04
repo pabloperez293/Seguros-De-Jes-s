@@ -8,7 +8,7 @@ const WHATSAPP = "5491157662077";
 
 const enlaces = [
   { texto: "Seguros", href: "#seguros" },
-  { texto: "Empresas", href: "#empresas" },
+  { texto: "Empresas", href: "#aseguradoras" },
   { texto: "Contacto", href: "#contacto" },
 ];
 

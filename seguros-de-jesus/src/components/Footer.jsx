@@ -2,35 +2,63 @@
 import React from "react";
 import {
   ArrowUpRight,
-  MapPin,
   Mail,
+  Clock3,
+  ShieldCheck,
+  ExternalLink,
 } from "lucide-react";
-
-import {
-  FaWhatsapp,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 import "../styles/Footer.css";
 
 /* =========================================
-   DATOS DE CONTACTO
+   DATOS DEL NEGOCIO
 ========================================= */
 
 const WHATSAPP = "5491157662077";
 
-// Completar con los datos reales de la clienta.
-// Mientras estén vacíos, no se mostrarán esos enlaces.
-const INSTAGRAM = "";
-const EMAIL = "";
-const UBICACION = "Gabino Ezeiza 8909, Loma Hermosa";
+const INSTAGRAM =
+  "https://www.instagram.com/segurosdejesus/";
 
-// Web o Instagram de PR. Creative Agency (opcional).
-const PR_AGENCY_URL = "https://www.instagram.com/pr.creativeagency/";
+const EMAIL = "";
+
+const DIRECCION =
+  "Gabino Ezeiza 8909, Loma Hermosa, Buenos Aires, Argentina 1657";
+
+const MAPS_URL =
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(DIRECCION)}`;
+
+const PR_AGENCY_URL =
+  "https://www.instagram.com/pr.creativeagency/";
+
+const SSN_URL =
+  "https://www.argentina.gob.ar/noticias/nueva-consulta-de-sujetos-habilitados-operar-por-la-ssn";
+
+const PRODUCTORA = {
+  nombre: "Ada Carolina De Jesús",
+  titulo: "Productora y asesora de seguros",
+  matricula: "73494",
+};
+
+const HORARIOS = [
+  {
+    dias: "Lunes a viernes",
+    horario: "9:00 a 12:30 y 15:00 a 18:30",
+  },
+  {
+    dias: "Sábados",
+    horario: "9:00 a 13:00",
+  },
+  {
+    dias: "Domingos",
+    horario: "Cerrado",
+  },
+];
 
 export default function Footer() {
-  const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-    "Hola, quisiera recibir asesoramiento sobre un seguro."
-  )}`;
+  const whatsappUrl =
+    `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+      "Hola, quisiera recibir asesoramiento sobre un seguro."
+    )}`;
 
   return (
     <footer className="sj-footer" id="contacto">
@@ -68,51 +96,24 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* =====================================
-            LLAMADO A LA ACCIÓN
-        ===================================== */}
-        <div className="sj-footer__contacto">
-          <div>
-            <span className="sj-footer__miniLabel">
-              ESTAMOS PARA ACOMPAÑARTE
-            </span>
-
-            <h3>¿Hablamos de tu próximo seguro?</h3>
-
-            <p>
-              Contanos qué necesitás y te asesoramos.
-            </p>
-          </div>
-
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="sj-footer__whatsapp"
-          >
-            <FaWhatsapp size={21} />
-            <span>Escribinos por WhatsApp</span>
-            <ArrowUpRight size={19} />
-          </a>
-        </div>
 
         {/* =====================================
-            COLUMNAS INFERIORES
+            INFORMACIÓN DEL NEGOCIO
         ===================================== */}
         <div className="sj-footer__columns">
 
-          {/* MARCA Y REDES SOCIALES */}
+          {/* MARCA */}
           <div className="sj-footer__brand">
             <strong>Seguros de Jesús</strong>
             <span>ASESORÍA INTEGRAL</span>
 
             <p>
               Tu tranquilidad, nuestra prioridad.
+              Asesoramiento cercano para proteger
+              lo que más importa.
             </p>
 
             <div className="sj-footer__sociales">
-
-              {/* WHATSAPP */}
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -120,32 +121,28 @@ export default function Footer() {
                 aria-label="Contactar por WhatsApp"
                 title="WhatsApp"
               >
-                <FaWhatsapp size={21} />
+                <FaWhatsapp size={20} />
               </a>
 
-              {/* INSTAGRAM */}
-              {INSTAGRAM && (
-                <a
-                  href={INSTAGRAM}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Visitar Instagram"
-                  title="Instagram"
-                >
-<Instagram size={17} />                </a>
-              )}
+              <a
+                href={INSTAGRAM}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visitar Instagram de Seguros de Jesús"
+                title="Instagram"
+              >
+                <FaInstagram size={20} />
+              </a>
 
-              {/* EMAIL */}
               {EMAIL && (
                 <a
                   href={`mailto:${EMAIL}`}
                   aria-label="Enviar un correo electrónico"
                   title="Email"
                 >
-                  <Mail size={21} />
+                  <Mail size={20} />
                 </a>
               )}
-
             </div>
           </div>
 
@@ -160,42 +157,82 @@ export default function Footer() {
             <a href="#seguros">Coberturas</a>
             <a href="#cotiza">Cotizá tu seguro</a>
             <a href="#aseguradoras">Aseguradoras</a>
+            <a href="#ubicacion">Dónde estamos</a>
           </nav>
 
-          {/* CONTACTO */}
-          <div className="sj-footer__info">
-            <h4>Contacto</h4>
+
+          {/* HORARIOS */}
+          <div className="sj-footer__horarios">
+            <h4>Horarios de atención</h4>
+
+            <div className="sj-footer__horariosTitle">
+              <Clock3 size={18} />
+              <span>Atención presencial</span>
+            </div>
+
+            {HORARIOS.map((item) => (
+              <div
+                className="sj-footer__horario"
+                key={item.dias}
+              >
+                <span>{item.dias}</span>
+                <strong>{item.horario}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* =====================================
+            MATRÍCULA PROFESIONAL / SSN
+        ===================================== */}
+        <div className="sj-footer__matricula">
+          <div className="sj-footer__matriculaProfesional">
+            <div className="sj-footer__matriculaIcono">
+              <ShieldCheck size={27} strokeWidth={1.5} />
+            </div>
+
+            <div className="sj-footer__matriculaDatos">
+              <span className="sj-footer__matriculaLabel">
+                INFORMACIÓN PROFESIONAL
+              </span>
+
+              <h4>{PRODUCTORA.nombre}</h4>
+
+              <p>{PRODUCTORA.titulo}</p>
+
+              <strong>
+                Matrícula N.º {PRODUCTORA.matricula}
+              </strong>
+            </div>
+          </div>
+
+          <div className="sj-footer__matriculaSeparador" />
+
+          <div className="sj-footer__matriculaSSN">
+            <span className="sj-footer__matriculaLabel">
+              ORGANISMO DE CONTROL
+            </span>
+
+          <img
+              src="/images/testimonios/ssn-logo.webp"
+              alt="Logo de la Superintendencia de Seguros de la Nación (SSN)"
+              className="sj-footer__matriculaSSNLogo"
+              loading="lazy"
+            />
+
+            <p>
+              Consultá la inscripción profesional
+              en el registro oficial de la SSN.
+            </p>
 
             <a
-              href={whatsappUrl}
+              href={SSN_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaWhatsapp size={17} />
-              WhatsApp
+              Consultar registro oficial
+              <ExternalLink size={15} />
             </a>
-
-            {INSTAGRAM && (
-              <a
-                href={INSTAGRAM}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-<FaInstagram size={17} />                Instagram
-              </a>
-            )}
-
-            {EMAIL && (
-              <a href={`mailto:${EMAIL}`}>
-                <Mail size={17} />
-                {EMAIL}
-              </a>
-            )}
-
-            <p>
-              <MapPin size={17} />
-              {UBICACION}
-            </p>
           </div>
         </div>
 
@@ -208,20 +245,14 @@ export default function Footer() {
             Todos los derechos reservados.
           </span>
 
-          {PR_AGENCY_URL ? (
-            <a
-              href={PR_AGENCY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Diseño y desarrollo · PR. Creative Agency
-              <ArrowUpRight size={13} />
-            </a>
-          ) : (
-            <span>
-              Diseño y desarrollo · PR. Creative Agency
-            </span>
-          )}
+          <a
+            href={PR_AGENCY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Diseño y desarrollo · PR. Creative Agency
+            <ArrowUpRight size={13} />
+          </a>
         </div>
 
       </div>
