@@ -122,9 +122,7 @@ export default function Cotizador({
   return (
     <section className="cotizador" id="cotiza">
       <div className="cotizador__presentacion">
-        <span className="cotizador__eyebrow">
-          ASESORAMIENTO PERSONALIZADO
-        </span>
+   
 
         <h2>Cotizá tu seguro</h2>
 

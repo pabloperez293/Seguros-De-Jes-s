@@ -1,88 +1,145 @@
 
+/* =========================================
+   COTIZADOR - SEGUROS DE JESÚS
+========================================= */
+
 .cotizador {
-  scroll-margin-top: 100px;
-  width: 94%;
-  margin: 0 auto 70px;
-  padding: 28px;
+  position: relative;
+  isolation: isolate;
+  scroll-margin-top: 110px;
+
   display: grid;
-  grid-template-columns: minmax(240px, 30%) minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 30%) minmax(0, 1fr);
+  gap: 26px;
   align-items: stretch;
-  gap: 25px;
-  border-radius: 28px;
-  background: #e9e7e1;
+
+  width: calc(100% - 6%);
+  max-width: 1380px;
+  min-height: 510px;
+  margin: 36px auto 70px;
+  padding: 22px;
+
+  border-radius: 30px;
+  overflow: hidden;
+
+  background-color: #e9e7e1;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(248, 247, 244, 0.05) 0%,
+      rgba(248, 247, 244, 0.10) 27%,
+      rgba(233, 231, 225, 0.48) 55%,
+      rgba(233, 231, 225, 0.72) 100%
+    ),
+    url("/images/cotizador-oficina.jpg");
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
+/* =========================================
+   COLUMNA IZQUIERDA
+========================================= */
+
 .cotizador__presentacion {
-  min-height: 480px;
-  padding: 35px 24px;
+  position: relative;
+  z-index: 1;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-start;
+
+  min-height: 440px;
+  padding: 28px 22px;
+
   border-radius: 20px;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(245, 242, 236, 0.04) 10%,
-      rgba(245, 242, 236, 0.93) 100%
-    ),
-    url("/images/cotizador-oficina.jpg") center / cover no-repeat,
-    #d8d9cb;
+  background: transparent;
 }
 
 .cotizador__eyebrow {
+  margin: 0;
   color: #686e57;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .cotizador__presentacion h2 {
-  margin: 16px 0;
-  color: #25271f;
+  max-width: 270px;
+  margin: 12px 0 18px;
+
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(35px, 4vw, 54px);
+  font-size: clamp(38px, 4.1vw, 58px);
   font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -1.5px;
+  line-height: 1.02;
+  letter-spacing: -1.8px;
+
+  color: #24251f;
 }
 
 .cotizador__linea {
-  width: 45px;
+  display: block;
+  width: 48px;
   height: 3px;
-  background: #7f8c6b;
-  border-radius: 3px;
+  flex-shrink: 0;
+  background: #788665;
 }
 
 .cotizador__presentacion p {
-  max-width: 245px;
-  margin: 18px 0 0;
-  color: #45493e;
-  font-size: 14px;
+  max-width: 250px;
+  margin: 20px 0 0;
+
+  color: #34382f;
+  font-size: 15px;
   line-height: 1.65;
 }
 
+/* =========================================
+   FORMULARIO DERECHO
+========================================= */
+
 .cotizador__formulario {
+  position: relative;
+  z-index: 2;
+
   min-width: 0;
-  padding: clamp(20px, 3vw, 36px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 15px 35px rgba(80, 80, 65, 0.05);
+  padding: clamp(22px, 3vw, 36px);
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 23px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 16px 45px rgba(51, 58, 44, 0.08);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .cotizador__formulario h3 {
-  margin: 0 0 18px;
+  margin: 0 0 20px;
+
   color: #24251f;
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 700;
+  letter-spacing: -0.5px;
 }
+
+/* =========================================
+   SELECTOR DE SEGUROS
+========================================= */
 
 .cotizador__tipos {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 9px;
-  margin-bottom: 26px;
+  gap: 8px;
+
+  margin-bottom: 24px;
 }
 
 .cotizador__tipo {
@@ -90,34 +147,59 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  padding: 10px 12px;
+
+  min-height: 38px;
+  padding: 9px 12px;
+
   border: 1px solid transparent;
-  border-radius: 30px;
+  border-radius: 999px;
+
   background: transparent;
-  color: #555b4b;
+  color: #4d5545;
+
   font-size: 12px;
   font-weight: 600;
+  line-height: 1.2;
+
   cursor: pointer;
+
   transition:
     background 0.25s ease,
+    border-color 0.25s ease,
     color 0.25s ease,
-    border-color 0.25s ease;
+    transform 0.25s ease;
 }
 
-.cotizador__tipo.activo {
+.cotizador__tipo svg {
+  flex-shrink: 0;
+  width: 19px;
+  height: 19px;
+}
+
+.cotizador__tipo.activo,
+.cotizador__tipo[aria-pressed="true"] {
   background: #788665;
-  color: white;
+  color: #fff;
 }
 
 .cotizador__tipo:hover:not(.activo) {
-  background: #f1f1eb;
-  border-color: #bfc4b4;
+  border-color: #c1c8b6;
+  background: #f0f1e9;
 }
+
+.cotizador__tipo:focus-visible {
+  outline: 3px solid rgba(120, 134, 101, 0.35);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   CAMPOS DEL FORMULARIO
+========================================= */
 
 .cotizador__campos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px 20px;
+  gap: 17px 20px;
 }
 
 .cotizador__campo {
@@ -146,87 +228,151 @@
 .cotizador__campo textarea {
   display: block;
   width: 100%;
-  min-width: 0;
-  min-height: 43px;
+  min-height: 44px;
+
   padding: 11px 14px;
+
   border: 1px solid #d9d8d0;
   border-radius: 12px;
   outline: none;
-  background: rgba(250, 249, 246, 0.85);
-  color: #34372f;
+
+  background: rgba(250, 249, 246, 0.92);
+  color: #30342b;
+
+  font: inherit;
   font-size: 13px;
+
   transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.cotizador__campo textarea {
-  resize: vertical;
-  min-height: 100px;
+.cotizador__campo input::placeholder,
+.cotizador__campo textarea::placeholder {
+  color: #85877e;
 }
 
 .cotizador__campo input:focus,
 .cotizador__campo select:focus,
 .cotizador__campo textarea:focus {
   border-color: #788665;
-  box-shadow: 0 0 0 3px rgba(120, 134, 101, 0.12);
+  box-shadow: 0 0 0 3px rgba(120, 134, 101, 0.13);
 }
 
-.cotizador__subtitulo {
-  margin-top: 28px !important;
+.cotizador__campo textarea {
+  min-height: 90px;
+  resize: vertical;
 }
+
+/* =========================================
+   SUBTÍTULOS Y OPCIONES
+========================================= */
+
+.cotizador__subtitulo {
+  margin: 27px 0 16px;
+  color: #24251f;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* Radios y checkboxes */
+
+.cotizador__formulario input[type="radio"],
+.cotizador__formulario input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  min-height: auto;
+  accent-color: #788665;
+  cursor: pointer;
+}
+
+/* =========================================
+   BOTÓN DE COTIZACIÓN
+========================================= */
 
 .cotizador__enviar {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 11px;
+
   width: 100%;
-  min-height: 52px;
-  margin-top: 25px;
-  padding: 15px 20px;
-  border: none;
+  min-height: 51px;
+  margin-top: 26px;
+  padding: 14px 20px;
+
+  border: 0;
   border-radius: 999px;
-  background: linear-gradient(135deg, #94a17c, #667450);
-  color: white;
+
+  background: linear-gradient(
+    135deg,
+    #97a583 0%,
+    #788665 55%,
+    #667450 100%
+  );
+
+  color: #fff;
+  font: inherit;
   font-size: 14px;
   font-weight: 700;
+  text-align: center;
+
   cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(85, 98, 68, 0.12);
+
   transition:
+    transform 0.25s ease,
     filter 0.25s ease,
-    transform 0.25s ease;
+    box-shadow 0.25s ease;
+}
+
+.cotizador__enviar svg {
+  flex-shrink: 0;
+  width: 19px;
+  height: 19px;
 }
 
 .cotizador__enviar:hover {
-  filter: brightness(0.96);
   transform: translateY(-2px);
+  filter: brightness(0.97);
+  box-shadow: 0 12px 24px rgba(85, 98, 68, 0.18);
 }
 
+.cotizador__enviar:focus-visible {
+  outline: 3px solid #788665;
+  outline-offset: 3px;
+}
+
+.cotizador__enviar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* =========================================
+   AVISO INFERIOR
+========================================= */
+
 .cotizador__aviso {
-  margin: 13px 0 0;
+  margin: 14px 0 0;
   color: #74786c;
   font-size: 11px;
-  line-height: 1.5;
+  line-height: 1.6;
   text-align: center;
 }
+
+/* =========================================
+   TABLET
+========================================= */
 
 @media (max-width: 900px) {
   .cotizador {
     grid-template-columns: 1fr;
-  }
-
-  .cotizador__presentacion {
-    min-height: 280px;
-  }
-}
-
-@media (max-width: 600px) {
-  .cotizador {
-    width: calc(100% - 28px);
-    margin-bottom: 50px;
-    padding: 14px;
-    gap: 14px;
-    border-radius: 20px;
+    gap: 18px;
+    min-height: 0;
+    padding: 18px;
+    background-position: 30% center;
   }
 
   .cotizador__presentacion {
@@ -234,8 +380,61 @@
     padding: 25px;
   }
 
+  .cotizador__presentacion h2 {
+    font-size: 46px;
+  }
+
   .cotizador__formulario {
-    padding: 20px 15px;
+    padding: 28px;
+  }
+}
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+  .cotizador {
+    width: calc(100% - 28px);
+    margin: 25px auto 45px;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 22px;
+    background-position: 27% center;
+  }
+
+  .cotizador__presentacion {
+    min-height: 240px;
+    padding: 24px 17px;
+  }
+
+  .cotizador__presentacion h2 {
+    font-size: 42px;
+  }
+
+  .cotizador__presentacion p {
+    max-width: 270px;
+    font-size: 14px;
+  }
+
+  .cotizador__formulario {
+    padding: 23px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.94);
+  }
+
+  .cotizador__formulario h3 {
+    font-size: 19px;
+  }
+
+  .cotizador__tipos {
+    gap: 5px;
+    margin-bottom: 22px;
+  }
+
+  .cotizador__tipo {
+    padding: 8px 10px;
+    font-size: 11px;
   }
 
   .cotizador__campos {
@@ -243,13 +442,102 @@
     gap: 15px;
   }
 
-  .cotizador__tipo {
-    font-size: 11px;
-    padding: 9px 10px;
+  .cotizador__campo--full {
+    grid-column: auto;
   }
 
   .cotizador__enviar {
-    font-size: 12px;
     padding: 14px 12px;
+    font-size: 12px;
   }
+}
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .cotizador__tipo,
+  .cotizador__campo input,
+  .cotizador__campo select,
+  .cotizador__campo textarea,
+  .cotizador__enviar {
+    transition: none;
+  }
+}
+
+/* Texto destacado sobre la fotografía */
+
+.cotizador__presentacion {
+  position: relative;
+  z-index: 1;
+}
+
+.cotizador__eyebrow {
+  color: #535e46;
+}
+
+.cotizador__presentacion h2 {
+  color: #20251d;
+}
+
+.cotizador__presentacion p {
+  color: #30382c;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.cotizador__linea {
+  background: #788665;
+}
+
+/* Un poco más de protección en celulares */
+
+@media (max-width: 900px) {
+  .cotizador {
+    background-image:
+      linear-gradient(
+        0deg,
+        rgba(216, 217, 203, 0.98) 0%,
+        rgba(216, 217, 203, 0.78) 30%,
+        rgba(248, 247, 244, 0.08) 80%
+      ),
+      url("/images/cotizador-oficina.jpg");
+  }
+}
+
+/* Degradado suave solo detrás del texto */
+
+.cotizador__presentacion {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+
+.cotizador__presentacion::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+
+  left: -22px;
+  right: -22px;
+  bottom: -22px;
+  height: 65%;
+
+  background: linear-gradient(
+    to top,
+    rgba(216, 217, 203, 0.98) 0%,
+    rgba(216, 217, 203, 0.88) 30%,
+    rgba(216, 217, 203, 0.48) 65%,
+    rgba(216, 217, 203, 0) 100%
+  );
+
+  pointer-events: none;
+}
+
+.cotizador__presentacion h2,
+.cotizador__presentacion p,
+.cotizador__eyebrow {
+  position: relative;
+  z-index: 1;
 }
