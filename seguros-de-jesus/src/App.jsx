@@ -8,6 +8,7 @@ import Cotizador from "./components/Cotizador";
 
 import Aseguradoras from "./components/Aseguradoras";
 import Recomendaciones from "./components/Recomendaciones";
+import Ubicacion from "./components/Ubicacion";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
         <Recomendaciones />
 
       </main>
+<Ubicacion />
 
       <Footer />
     </>

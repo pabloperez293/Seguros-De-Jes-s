@@ -4,22 +4,22 @@ import "../styles/Recomendaciones.css";
 
 const testimonios = [
   {
-    nombre: "Mariana C.",
+    nombre: "Federico Cabana",
     texto:
-      "Me ayudaron a encontrar la mejor cobertura para mi auto. La atención es excelente.",
-    imagen: "/images/testimonios/mariana.jpeg",
+      "Muy buena atención y predisposición.",
+    imagen: "/images/testimonios/Federico.png",
   },
   {
-    nombre: "Lucas P.",
+    nombre: "Stella Oviedo",
     texto:
-      "Contraté el seguro de mi casa y me dieron mucha tranquilidad. Siempre responden.",
-    imagen: "/images/testimonios/lucas.jpeg",
+      "Excelente atención👏👍👇👌.",
+    imagen: "/images/testimonios/Stella.png",
   },
   {
-    nombre: "Carla M.",
+    nombre: "Natalia Fuente",
     texto:
-      "Muy claros, honestos y siempre dispuestos a resolver mis dudas. Los recomiendo.",
-    imagen: "/images/testimonios/carla.jpeg",
+      "Excelente oficina de seguros muy buena atención siempre responden.",
+    imagen: "/images/testimonios/Natalia.png",
   },
 ];
 
@@ -103,10 +103,6 @@ export default function Recomendaciones() {
           ))}
         </div>
 
-        <p className="recomendaciones__nota">
-          Testimonios ilustrativos para la propuesta de diseño.
-          Pendientes de reemplazar por opiniones reales.
-        </p>
       </div>
     </section>
   );

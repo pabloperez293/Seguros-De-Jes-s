@@ -22,7 +22,7 @@ const WHATSAPP = "5491157662077";
 // Mientras estén vacíos, no se mostrarán esos enlaces.
 const INSTAGRAM = "";
 const EMAIL = "";
-const UBICACION = "Argentina";
+const UBICACION = "Gabino Ezeiza 8909, Loma Hermosa";
 
 // Web o Instagram de PR. Creative Agency (opcional).
 const PR_AGENCY_URL = "https://www.instagram.com/pr.creativeagency/";
