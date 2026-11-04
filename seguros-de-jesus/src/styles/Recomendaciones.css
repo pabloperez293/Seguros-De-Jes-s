@@ -1,85 +1,283 @@
 
+/* =========================================
+   RECOMENDACIONES - SEGUROS DE JESÚS
+========================================= */
+
 .recomendaciones {
-  background: #d8d9cb;
-  padding: 90px 6% 110px;
+  position: relative;
+  background: #faf8f4;
+  padding: 110px 6% 115px;
+  overflow: hidden;
+}
+
+.recomendaciones * {
+  box-sizing: border-box;
 }
 
 .recomendaciones__container {
-  max-width: 1250px;
+  max-width: 1320px;
   margin: 0 auto;
 }
 
-.recomendaciones__header {
-  max-width: 700px;
-  margin: 0 auto 55px;
+/* ENCABEZADO */
+
+.recomendaciones__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  color: #686e57;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-align: center;
 }
 
-.recomendaciones__etiqueta {
-  color: #686e57;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2.2px;
+.recomendaciones__linea {
+  width: 80px;
+  height: 1px;
+  background: #aeb6a0;
+  flex-shrink: 0;
 }
 
-.recomendaciones__header h2 {
-  margin: 17px 0 20px;
-  color: #24251f;
-  font-family: Georgia, serif;
-  font-size: clamp(34px, 4vw, 55px);
+/* TÍTULO */
+
+.recomendaciones__intro {
+  text-align: center;
+  margin: 40px auto 75px;
+}
+
+.recomendaciones__intro h2 {
+  margin: 0 auto;
+  max-width: 1050px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 5vw, 69px);
   font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -1.5px;
+  line-height: 1.16;
+  letter-spacing: -2px;
+  color: #24251f;
 }
 
-.recomendaciones__header p {
-  color: #55594e;
-  font-size: 15px;
-  line-height: 1.8;
+.recomendaciones__destacado {
+  display: inline-block;
+  padding: 0 16px 7px;
+  border-radius: 14px;
+  background: #788665;
+  color: #faf8f4;
+  font-style: italic;
+  font-weight: 400;
+  transform: skewX(-7deg);
 }
+
+.recomendaciones__intro p {
+  max-width: 640px;
+  margin: 25px auto 0;
+  color: #686e57;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+/* GRID DE TESTIMONIOS */
 
 .recomendaciones__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  align-items: start;
 }
 
-.recomendaciones__card {
-  padding: 35px;
-  background: rgba(255,255,255,.65);
-  border: 1px solid rgba(255,255,255,.6);
-  border-radius: 23px;
+.recomendaciones__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 18px;
+  border-right: 1px solid #d8d9cb;
   transition: transform .3s ease;
 }
 
-.recomendaciones__card:hover {
-  transform: translateY(-6px);
+.recomendaciones__item:last-child {
+  border-right: none;
 }
 
-.recomendaciones__card svg {
-  color: #788665;
-  margin-bottom: 25px;
+.recomendaciones__item:hover {
+  transform: translateY(-5px);
 }
 
-.recomendaciones__card h3 {
+/* FOTO CIRCULAR */
+
+.recomendaciones__foto {
+  width: 95px;
+  height: 95px;
+  flex: 0 0 95px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #e7e9e0;
+  border: 4px solid #e5e9df;
+}
+
+.recomendaciones__foto img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* TEXTO */
+
+.recomendaciones__contenido {
+  flex: 1;
+  min-width: 0;
+}
+
+.recomendaciones__frase {
+  margin: 0 0 14px;
+  color: #30342b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.recomendaciones__nombre {
+  display: block;
   color: #24251f;
-  font-size: 18px;
-  margin: 0 0 13px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
-.recomendaciones__card p {
-  margin: 0;
-  color: #606458;
-  font-size: 14px;
-  line-height: 1.8;
+/* AVISO TEMPORAL */
+
+.recomendaciones__nota {
+  margin: 45px auto 0;
+  color: #888d80;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
 }
 
-@media (max-width: 800px) {
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
   .recomendaciones__grid {
-    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
+  .recomendaciones__item {
+    gap: 12px;
+    padding: 16px 10px;
+  }
+
+  .recomendaciones__foto {
+    width: 75px;
+    height: 75px;
+    flex-basis: 75px;
+  }
+
+  .recomendaciones__frase {
+    font-size: 15px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 760px) {
   .recomendaciones {
-    padding: 70px 5%;
+    padding: 75px 5% 85px;
+  }
+
+  .recomendaciones__eyebrow {
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+  }
+
+  .recomendaciones__linea {
+    width: 30px;
+  }
+
+  .recomendaciones__intro {
+    margin: 35px auto 50px;
+  }
+
+  .recomendaciones__intro h2 {
+    font-size: clamp(35px, 8vw, 50px);
+    letter-spacing: -1px;
+  }
+
+  .recomendaciones__intro p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .recomendaciones__grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .recomendaciones__item {
+    padding: 25px 0;
+    gap: 20px;
+    border-right: none;
+    border-bottom: 1px solid #d8d9cb;
+  }
+
+  .recomendaciones__item:last-child {
+    border-bottom: none;
+  }
+
+  .recomendaciones__foto {
+    width: 85px;
+    height: 85px;
+    flex-basis: 85px;
+  }
+
+  .recomendaciones__frase {
+    font-size: 17px;
+  }
+
+  .recomendaciones__nombre {
+    font-size: 14px;
+  }
+}
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media (max-width: 380px) {
+  .recomendaciones__item {
+    gap: 12px;
+  }
+
+  .recomendaciones__foto {
+    width: 70px;
+    height: 70px;
+    flex-basis: 70px;
+  }
+
+  .recomendaciones__frase {
+    font-size: 15px;
+  }
+
+  .recomendaciones__destacado {
+    padding: 0 9px 5px;
+  }
+}
+
+/* =========================================
+   ACCESIBILIDAD
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .recomendaciones__item {
+    transition: none;
+  }
+
+  .recomendaciones__item:hover {
+    transform: none;
   }
 }
