@@ -7,26 +7,26 @@ import {
   Building2,
   ArrowUpRight,
 } from "lucide-react";
-
+import useScrollReveal from "../hooks/useScrollReveal";
 import "../styles/Seguros.css";
 
 const coberturas = [
-  { nombre: "Auto", imagen: "/images/coberturas/auto.jpg", Icono: CarFront },
-  { nombre: "Moto", imagen: "/images/coberturas/moto.jpg", Icono: Bike },
-  { nombre: "Hogar", imagen: "/images/coberturas/hogar.jpg", Icono: House },
+  { nombre: "Auto", imagen: "/images/coberturas/auto.jpeg", Icono: CarFront },
+  { nombre: "Moto", imagen: "/images/coberturas/moto.jpeg", Icono: Bike },
+  { nombre: "Hogar", imagen: "/images/coberturas/hogar.jpeg", Icono: House },
   {
     nombre: "Vida y Salud",
-    imagen: "/images/coberturas/vida.jpg",
+    imagen: "/images/coberturas/vida.jpeg",
     Icono: HeartPulse,
   },
   {
     nombre: "Comercio",
-    imagen: "/images/coberturas/comercio.jpg",
+    imagen: "/images/coberturas/comercio.jpeg",
     Icono: Store,
   },
   {
     nombre: "Empresa",
-    imagen: "/images/coberturas/empresa.jpg",
+    imagen: "/images/coberturas/empresa.jpeg",
     Icono: Building2,
   },
 ];
@@ -40,9 +40,13 @@ export default function Seguros({ onSeleccionarSeguro }) {
       block: "start",
     });
   };
-
+  const { ref, visible } = useScrollReveal();
   return (
-    <section className="coberturas" id="seguros">
+    <section
+      ref={ref}
+      className={`coberturas reveal ${visible ? "reveal--visible" : ""}`}
+      id="seguros"
+    >
       <div className="coberturas__intro">
         <span className="coberturas__eyebrow">NUESTRAS COBERTURAS</span>
 

@@ -6,8 +6,9 @@ export default function useScrollReveal() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
+    const elemento = ref.current;
+
+    if (!elemento) return;
 
     if (
       !("IntersectionObserver" in window) ||
@@ -24,10 +25,13 @@ export default function useScrollReveal() {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -35px 0px",
+      }
     );
 
-    observer.observe(element);
+    observer.observe(elemento);
 
     return () => observer.disconnect();
   }, []);

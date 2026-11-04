@@ -3,14 +3,14 @@
 :root {
   font-family: "DM Sans", Arial, sans-serif;
 
-  --color-cream: #f8f7f4;
+ --color-cream: #d8d9cb;
   --color-stone: #e9e7e1;
   --color-sage-light: #d8d9cb;
   --color-olive: #788665;
   --color-olive-dark: #686e57;
   --color-black: #24251f;
 
-  --fondo-principal: #f8f7f4;
+  --fondo-principal: #d8d9cb;
   --fondo-secundario: #e9e7e1;
   --verde-oliva: #788665;
   --verde-profundo: #686e57;
@@ -38,7 +38,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: var(--color-cream);
+  background: var(--fondo-principal);
   color: var(--color-black);
 }
 
@@ -113,5 +113,36 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Fondo general salvia */
+
+.navbar,
+.coberturas {
+  background-color: #d8d9cb;
+}
+
+.navbar--scrolled {
+  background-color: rgba(216, 217, 203, 0.97);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

@@ -2,215 +2,244 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 560px;
+  min-height: 610px;
   overflow: hidden;
-  background: #f8f7f4;
   isolation: isolate;
+  background: #d8d9cb;
 }
 
-.hero__container,
-.hero__inner {
+.hero__container {
   position: relative;
   z-index: 2;
-  width: min(100% - 10%, 1380px);
-  min-height: 560px;
+  width: min(90%, 1380px);
+  min-height: 610px;
   margin: 0 auto;
   display: flex;
   align-items: center;
 }
 
-.hero__content,
-.hero__texto {
+.hero__content {
   position: relative;
   z-index: 3;
-  width: min(48%, 520px);
-  padding: 50px 0 75px;
+  width: min(48%, 510px);
+  padding: 65px 0 80px;
 }
 
-.hero__eyebrow,
-.hero__subtitle,
-.hero__label {
-  display: inline-block;
-  margin-bottom: 18px;
+.hero__eyebrow {
+  display: block;
+  margin-bottom: 20px;
   color: #686e57;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3px;
-  text-transform: uppercase;
 }
 
 .hero h1 {
   margin: 0;
-  color: #20231d;
+  color: #24251f;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(47px, 5.1vw, 77px);
+  font-size: clamp(48px, 5.4vw, 78px);
   font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: -2.8px;
+  line-height: 1.04;
+  letter-spacing: -2.5px;
 }
 
-.hero h1 em,
-.hero h1 i,
-.hero__highlight {
+.hero h1 em {
   color: #788665;
-  font-style: italic;
   font-weight: 400;
 }
 
-.hero__description,
-.hero__content > p,
-.hero__texto > p {
-  max-width: 385px;
+.hero__description {
+  max-width: 370px;
   margin: 25px 0 30px;
-  color: #3e4239;
-  font-size: clamp(14px, 1.3vw, 16px);
-  line-height: 1.7;
+  color: #353a30;
+  font-size: 15px;
+  line-height: 1.8;
 }
 
-.hero__button,
-.hero__cta,
-.hero__btn {
+.hero__button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  min-height: 50px;
-  padding: 14px 30px;
+  gap: 18px;
+  min-height: 52px;
+  padding: 14px 29px;
   border: none;
   border-radius: 999px;
-  background: linear-gradient(135deg, #99a784, #748361);
-  color: white;
-  text-decoration: none;
+  background: linear-gradient(135deg, #96a480, #748361);
+  color: #fff;
   font-size: 14px;
   font-weight: 700;
-  box-shadow: 0 10px 22px rgba(104, 110, 87, 0.14);
+  text-decoration: none;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
 }
 
-.hero__button:hover,
-.hero__cta:hover,
-.hero__btn:hover {
+.hero__button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 28px rgba(104, 110, 87, 0.22);
+  box-shadow: 0 12px 25px rgba(65, 75, 55, 0.2);
 }
 
-.hero__image,
-.hero__visual,
-.hero__photo {
+.hero__trust {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  max-width: 340px;
+  margin-top: 32px;
+  color: #4b5145;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Fotografía sin redondel */
+
+.hero__image {
   position: absolute;
   z-index: 1;
   top: 0;
   right: 0;
-  width: 62%;
+  width: 68%;
   height: 100%;
   overflow: hidden;
-  border-top-left-radius: 48% 72%;
-  border-bottom-left-radius: 20% 38%;
+  border-radius: 0;
   background: #d8d9cb;
 }
 
-.hero__image img,
-.hero__visual img,
-.hero__photo img {
+.hero__image img {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
   object-position: center;
 }
 
-.hero__image::after,
-.hero__visual::after,
-.hero__photo::after {
+/* Degradado integrado al fondo */
+
+.hero__image::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(248, 247, 244, 0.28),
-    transparent 35%
-  );
   pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      #d8d9cb 0%,
+      rgba(216, 217, 203, 0.97) 9%,
+      rgba(216, 217, 203, 0.72) 29%,
+      rgba(216, 217, 203, 0.18) 55%,
+      transparent 80%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(216, 217, 203, 0.45),
+      transparent 24%
+    );
 }
 
-.hero__trust,
-.hero__social-proof {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 30px;
-  font-size: 12px;
-  color: #55594e;
-}
+/* Responsive */
 
 @media (max-width: 900px) {
   .hero,
-  .hero__container,
-  .hero__inner {
-    min-height: 510px;
+  .hero__container {
+    min-height: 550px;
   }
 
-  .hero__content,
-  .hero__texto {
-    width: 54%;
+  .hero__content {
+    width: 55%;
   }
 
-  .hero__image,
-  .hero__visual,
-  .hero__photo {
-    width: 58%;
+  .hero__image {
+    width: 75%;
   }
 
   .hero h1 {
-    font-size: clamp(43px, 6vw, 62px);
+    font-size: clamp(44px, 6vw, 64px);
   }
 }
 
 @media (max-width: 650px) {
   .hero {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
+    min-height: 720px;
   }
 
-  .hero__container,
-  .hero__inner {
-    min-height: auto;
+  .hero__container {
     width: calc(100% - 40px);
-    order: 1;
+    min-height: 480px;
+    align-items: flex-start;
   }
 
-  .hero__content,
-  .hero__texto {
+  .hero__content {
     width: 100%;
-    padding: 48px 0 30px;
+    padding: 60px 0 30px;
   }
 
   .hero h1 {
-    max-width: 420px;
-    font-size: clamp(43px, 11vw, 58px);
-    letter-spacing: -1.8px;
+    font-size: clamp(43px, 10vw, 58px);
   }
 
-  .hero__description,
-  .hero__content > p,
-  .hero__texto > p {
-    max-width: 390px;
-    margin: 20px 0 24px;
+  .hero__description {
+    max-width: 360px;
+    font-size: 14px;
   }
 
-  .hero__image,
-  .hero__visual,
-  .hero__photo {
-    position: relative;
-    order: 2;
-    width: calc(100% - 20px);
-    height: 300px;
-    margin-left: 20px;
-    border-top-left-radius: 150px;
-    border-bottom-left-radius: 35px;
-    border-top-right-radius: 0;
+  .hero__image {
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 350px;
+  }
+
+  .hero__image::after {
+    background: linear-gradient(
+      180deg,
+      #d8d9cb 0%,
+      rgba(216, 217, 203, 0.82) 16%,
+      rgba(216, 217, 203, 0.12) 50%,
+      transparent 100%
+    );
+  }
+
+  .hero__trust {
+    max-width: 290px;
+  }
+}
+
+.hero__content--animated {
+  animation: hero-content-in 0.9s ease-out both;
+}
+
+.hero__image--animated img {
+  animation: hero-image-in 1.4s ease-out both;
+}
+
+@keyframes hero-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-image-in {
+  from {
+    opacity: 0.5;
+    transform: scale(1.045);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__content--animated,
+  .hero__image--animated img {
+    animation: none;
   }
 }

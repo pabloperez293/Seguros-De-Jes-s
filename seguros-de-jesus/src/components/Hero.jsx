@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="hero" id="inicio">
       <div className="hero__container">
-        <div className="hero__content">
+        <div className="hero__content hero__content--animated">
           <span className="hero__eyebrow">
             ASESORÍA EN SEGUROS
           </span>
@@ -31,19 +31,15 @@ export default function Hero() {
           <div className="hero__trust">
             <ShieldCheck size={25} color="#788665" />
             <span>
-              Asesoramiento cercano y personalizado
-              para personas, familias y empresas.
+              Asesoramiento cercano y personalizado para
+              personas, familias y empresas.
             </span>
           </div>
         </div>
       </div>
 
-      <div className="hero__image" aria-hidden="true">
-        <img
-          src="/images/hero-auto.jpg"
-          alt=""
-          fetchPriority="high"
-        />
+      <div className="hero__image hero__image--animated" aria-hidden="true">
+        <img src="/images/hero-auto.jpg" alt="" fetchPriority="high" />
       </div>
     </section>
   );

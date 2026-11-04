@@ -1,14 +1,14 @@
+
 import { useEffect, useState } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { ShieldCheck, Menu, X } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import "../styles/Navbar.css";
 
 const WHATSAPP = "5491157662077";
 
 const enlaces = [
-  { texto: "Inicio", href: "#inicio" },
   { texto: "Seguros", href: "#seguros" },
   { texto: "Empresas", href: "#empresas" },
-  { texto: "Sobre mí", href: "#nosotros" },
   { texto: "Contacto", href: "#contacto" },
 ];
 
@@ -17,63 +17,103 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const revisarScroll = () => {
+    const manejarScroll = () => {
       setScrolled(window.scrollY > 20);
     };
 
-    revisarScroll();
-    window.addEventListener("scroll", revisarScroll, { passive: true });
+    manejarScroll();
 
-    return () => window.removeEventListener("scroll", revisarScroll);
+    window.addEventListener("scroll", manejarScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", manejarScroll);
+    };
   }, []);
 
+  const whatsappURL = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
+    "¡Hola! Quisiera recibir asesoramiento sobre un seguro."
+  )}`;
+
+  const cerrarMenu = () => {
+    setAbierto(false);
+  };
+
   return (
-    <header className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
+    <header
+      className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}
+    >
       <div className="navbar__container">
+
+        {/* LOGO */}
         <a
-          className="navbar__logo"
           href="#inicio"
-          onClick={() => setAbierto(false)}
+          className="navbar__logo"
+          aria-label="Seguros de Jesús - Ir al inicio"
+          onClick={cerrarMenu}
         >
-          <img src="/images/logoJesus.jpg" alt="Seguros de Jesús" />
+          <ShieldCheck
+            className="navbar__logo-icon"
+            strokeWidth={1.4}
+            aria-hidden="true"
+          />
+
+          <div className="navbar__logo-text">
+            <span className="navbar__logo-title">
+              Seguros
+              <br />
+              de Jesús
+            </span>
+
+            <span className="navbar__logo-subtitle">
+              ASESORÍA INTEGRAL
+            </span>
+          </div>
         </a>
 
+        {/* NAVEGACIÓN */}
         <nav
           id="navegacion-principal"
-          className={`navbar__links ${abierto ? "navbar__links--open" : ""}`}
+          className={`navbar__links ${
+            abierto ? "navbar__links--open" : ""
+          }`}
           aria-label="Navegación principal"
         >
           {enlaces.map((enlace) => (
             <a
-              key={enlace.href}
+              key={enlace.texto}
               href={enlace.href}
-              onClick={() => setAbierto(false)}
+              onClick={cerrarMenu}
             >
               {enlace.texto}
             </a>
           ))}
         </nav>
 
+        {/* BOTÓN WHATSAPP */}
         <a
           className="navbar__whatsapp"
-          href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Hola, quisiera consultar por un seguro.")}`}
+          href={whatsappURL}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <MessageCircle size={19} />
+          <FaWhatsapp size={20} aria-hidden="true" />
           <span>Consultá por WhatsApp</span>
         </a>
 
+        {/* MENÚ MÓVIL */}
         <button
-          className="navbar__toggle"
           type="button"
+          className="navbar__toggle"
           aria-label={abierto ? "Cerrar menú" : "Abrir menú"}
-          aria-controls="navegacion-principal"
           aria-expanded={abierto}
-          onClick={() => setAbierto((valor) => !valor)}
+          aria-controls="navegacion-principal"
+          onClick={() => setAbierto((prev) => !prev)}
         >
-          {abierto ? <X size={24} /> : <Menu size={24} />}
+          {abierto ? <X size={23} /> : <Menu size={23} />}
         </button>
+
       </div>
     </header>
   );
