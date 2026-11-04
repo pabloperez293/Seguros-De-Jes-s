@@ -25,7 +25,7 @@ const EMAIL = "";
 const UBICACION = "Argentina";
 
 // Web o Instagram de PR. Creative Agency (opcional).
-const PR_AGENCY_URL = "";
+const PR_AGENCY_URL = "https://www.instagram.com/pr.creativeagency/";
 
 export default function Footer() {
   const whatsappUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
@@ -212,7 +212,7 @@ export default function Footer() {
             <a
               href={PR_AGENCY_URL}
               target="_blank"
-              rel="https://www.instagram.com/pr.creativeagency/"
+              rel="noopener noreferrer"
             >
               Diseño y desarrollo · PR. Creative Agency
               <ArrowUpRight size={13} />
