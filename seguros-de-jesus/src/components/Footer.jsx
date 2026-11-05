@@ -42,7 +42,7 @@ const PRODUCTORA = {
 const HORARIOS = [
   {
     dias: "Lunes a viernes",
-    horario: "9:00 a 12:30 y 15:00 a 18:30",
+    horario: "9:00 a 12:00 y 15:00 a 18:00",
   },
   {
     dias: "Sábados",
